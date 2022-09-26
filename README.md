@@ -1,5 +1,7 @@
 # mini-crm
 
+Laravel Documentation : https://laravel.com/docs
+
 Adminpanel to manage companies
 
 Basically, project to manage companies and their employees. Mini-CRM.
