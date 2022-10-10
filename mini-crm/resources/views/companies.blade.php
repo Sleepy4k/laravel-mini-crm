@@ -11,6 +11,7 @@
             <th>Email</th>
             <th>Logo Perusahaan</th>
             <th>Website</th>
+            <td colspan="2">Opsi</td>
         </tr>
     </thead>
     <tbody>
@@ -19,8 +20,10 @@
                 <td>{{$loop->iteration}}</td>
                 <td>{{$item->name}}</td>
                 <td>{{$item->email}}</td>
-                <td>{{$item->logo}}</td>
+                <td><img src="{{$item->logo}}" height="60"></td>
                 <td>{{$item->website}}</td>
+                <td><button type="button" class="btn btn-primary">Edit</button></td>
+                <td><button type="button" class="btn btn-danger">Hapus</button></td>
             </tr>
         @endforeach
     </tbody>

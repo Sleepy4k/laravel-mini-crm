@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompaniesController;
+use App\Http\Controllers\EmployeesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +23,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [UserController::class, 'login'])->name('login');
 Route::post('/', [UserController::class, 'authenticate'])->name('authenticate');
 Route::get('/companies', [CompaniesController::class, 'index'])->name('index');
+Route::get('/employees', [EmployeesController::class, 'index'])->name('index');
