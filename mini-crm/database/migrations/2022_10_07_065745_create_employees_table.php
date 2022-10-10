@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('companies_id');
             $table->string('email')->unique();
             $table->string('phone');
+            $table->string('updated_at');
+            $table->string('created_at');
         });
     }
 
