@@ -8,19 +8,31 @@
     <div class="col-8">
         <div class="card">
             <div class="card-body">
-                <form action="/updatecompanies/{{ $data->id }}" method="POST">
+                <form action="/updatecompanies/{{ $data->id }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="" class="form-label">Nama Perusahaan</label>
-                        <input type="text" class="form-control" id="namaperusahaan" name="name" value="{{$data->name}}">
+                        <input type="text" class="form-control" id="namaperusahaan" name="name" 
+                        required autofocus value="{{$data->name}}">
+                        
                     </div>
                     <div class="mb-3">
                         <label for="">Email</label>
                         <input type="email" class="form-control" id="email" name="email" value="{{$data->email}}">
                     </div>
                     <div class="mb-3">
-                        <label for="">Link Logo Perusahaan</label>
-                        <input type="text" class="form-control" id="linklogo"  name="logo" value="{{$data->logo}}">
+                        <label for="image" class="form-label">Logo Perusahaan</label>
+                        @if ($data->logo)
+                        <img src="{{ asset('storage/'.$data ->logo)}}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                        @else                    
+                        <img class="img-preview img-fluid mb-3 col-sm-5">
+                        @endif
+                        <input class="form-control" @error('logo') is-invalid @enderror type="file" id="logo" name="logo" onchange="previewImage()">
+                        @error('logo')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="">Website</label>
@@ -33,6 +45,17 @@
     </div>
 </div>
 
-
+<script>
+    function previewImage(){
+        const img = document.querySelector('#logo');
+        const imgPreview = document.querySelector('.img-preview');
+        imgPreview.style.display = 'block';
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(logo.files[0]);
+        oFReader.onload = function(oFREvent){
+            imgPreview.src = oFREvent.target.result;
+        }
+    }
+</script>
 
 @endsection

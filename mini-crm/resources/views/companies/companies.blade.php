@@ -25,7 +25,7 @@
                     <td class="text-center">{{$loop->iteration}}</td>
                     <td>{{$item->name}}</td>
                     <td>{{$item->email}}</td>
-                    <td><img src="{{$item->logo}}" height="60"></td>
+                    <td><img src="{{ asset('storage/'.$item->logo)}}" height="60"></td>
                     <td><a href="{{$item->website}}">{{$item->website}}</a></td>
                     <td>
                         <a href="/getcompanies/{{$item->id}}" class="btn btn-primary">Edit</a>

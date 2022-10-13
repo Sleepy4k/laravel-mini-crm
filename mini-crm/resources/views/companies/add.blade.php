@@ -15,15 +15,21 @@
                         <input type="text" class="form-control" id="namaperusahaan" name="name">
                     </div>
                     <div class="mb-3">
-                        <label for="">Email</label>
+                        <label for="" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" name="email">
                     </div>
                     <div class="mb-3">
-                        <label for="">Link Logo Perusahaan</label>
-                        <input type="text" class="form-control" id="linklogo"  name="logo">
+                        <label for="image" class="form-label">Logo Perusahaan</label>
+                        <img class="img-preview img-fluid mb-3 col-sm-5">
+                        <input class="form-control" @error('logo') is-invalid @enderror type="file" id="logo" name="logo" onchange="previewImage()">
+                        @error('logo')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="">Website</label>
+                        <label for="" class="form-label">Website</label>
                         <input type="text" class="form-control" id="website" name="website">
                     </div>
                     <button type="submit" class="btn btn-success mt-2">Simpan</button>
@@ -33,6 +39,17 @@
     </div>
 </div>
 
-
+<script>
+    function previewImage(){
+        const img = document.querySelector('#logo');
+        const imgPreview = document.querySelector('.img-preview');
+        imgPreview.style.display = 'block';
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(logo.files[0]);
+        oFReader.onload = function(oFREvent){
+            imgPreview.src = oFREvent.target.result;
+        }
+    }
+</script>
 
 @endsection
