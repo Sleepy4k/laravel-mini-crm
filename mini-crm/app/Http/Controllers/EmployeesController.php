@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class EmployeesController extends Controller
 {
     public function index(){
-        $class = Employees::all();
+        $class = Employees::paginate(10);
         return view('employees/employees', ['employees'=>$class]);
     }
     

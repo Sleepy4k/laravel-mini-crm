@@ -44,5 +44,6 @@
             </ul>
           </nav>
     </table>
+    {{$companies->links()}}
 </div>
 @endsection

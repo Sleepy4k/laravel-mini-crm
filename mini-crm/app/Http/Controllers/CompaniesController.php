@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class CompaniesController extends Controller
 {
     public function index(){
-        $class = Companies::all();
+        $class = Companies::paginate(10);
         return view('companies.companies', ['companies'=>$class]);
     }
 
