@@ -1,9 +1,9 @@
-@extends('layouts.main')
-
-@section('title', 'Add Companies')
+@extends('dashboard.layouts.main')
+@section('title', 'Companies')
 @section('content')
-<br>
-<h2 class="text-center mt-4 mb-5">Tambah Data Perusahaan</h2>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Tambah Data Perusahaan</h1>
+</div>
 <div class="row justify-content-center">
     <div class="col-8">
         <div class="card">

@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\User as Authhenticable;
 
-class users extends Model
+class users extends Authhenticable
 {
     use HasFactory;
 

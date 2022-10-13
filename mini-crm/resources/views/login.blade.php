@@ -20,9 +20,8 @@
 
         <main class="form-signin w-100 m-auto">
             <h1 class="mt-5 h3 mb-5 fw-normal text-center">Please sign in</h1>
-            <form action="{{route('authenticate')}}" method="post">
+            <form action="/" method="post">
                 @csrf
-                <!-- <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
 
                 <div class="mt-3 form-floating">
                     <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" 
@@ -34,6 +33,8 @@
                     </div>
                     @enderror
                 </div>
+
+                {{-- Password --}}
                 <div class="mt-3 form-floating">
                     <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
                     <label for="password">Password</label>
