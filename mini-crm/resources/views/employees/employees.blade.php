@@ -25,7 +25,7 @@
                     <td>{{$loop->iteration}}</td>
                     <td>{{$item->first_name}}</td>
                     <td>{{$item->last_name}}</td>
-                    <td>{{$item->companies['name']}}</td>
+                    <td>{{$item->companies['name']??'-'}}</td>
                     <td>{{$item->email}}</td>
                     <td>{{$item->phone}}</td>
                     <td>
