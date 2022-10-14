@@ -34,7 +34,7 @@
         <tbody>
             @foreach ($employees as $item)
                 <tr class="align-middle">
-                    <td>{{$loop->iteration}}</td>
+                    <td>{{$employees->firstItem() + $loop->index}}</td>
                     <td>{{$item->first_name}}</td>
                     <td>{{$item->last_name}}</td>
                     <td>{{$item->companies['name']??'-'}}</td>
