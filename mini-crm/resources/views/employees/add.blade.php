@@ -19,7 +19,7 @@
                         <input type="text" class="form-control" id="namabelakang" name="last_name">
                     </div>
                     <div class="mb-3">
-                        <label for="" class="form-label">ID Perusahaan</label>
+                        <label for="" class="form-label">Nama Perusahaan</label>
                         <select class="form-select" id="companies_id" name="companies_id">
                             @foreach ($companies as $company)
                                 <option value="{{$company->id}}">{{$company->id}}. {{$company->name}}</option>

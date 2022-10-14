@@ -19,7 +19,7 @@
                         <input type="text" class="form-control" id="namabelakang" name="last_name" value="{{$data->last_name}}">
                     </div>
                     <div class="mb-3">
-                        <label for="">ID Perusahaan</label>
+                        <label for="">Nama Perusahaan</label>
                         {{-- <input type="number" class="form-control" id="companies_id" name="companies_id" value="{{$data->companies_id}}"> --}}
                         <select class="form-select" id="companies_id" name="companies_id">
                             @foreach ($companies as $company)
