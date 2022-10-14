@@ -8,8 +8,12 @@ use Illuminate\Support\Facades\Storage;
 
 class CompaniesController extends Controller
 {
-    public function index(){
-        $class = Companies::paginate(10);
+    public function index(Request $request){
+        if ($request->has('search')){
+        $class = Companies::where('name','LIKE', '%' .$request->search. '%')-> paginate(10);
+        }else{
+        $class = Companies::paginate(10);    
+        }
         return view('companies.companies', ['companies'=>$class]);
     }
 

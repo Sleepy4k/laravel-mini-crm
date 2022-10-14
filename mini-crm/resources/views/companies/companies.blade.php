@@ -6,6 +6,18 @@
 </div>
 <br>
 <a class="btn btn-success mb-3" href="{{ url('companies_add')}}">Tambah</a>
+<div class="row">
+    <div class="col-md-6">
+        <form action="/companies"> 
+            <div class="input-group mb-3">
+                <form action="/companies" method="GET"> 
+                <input type="text" class="form-control" placeholder="Search.." name="search">
+                <button class="btn btn-primary" type="submit">Search</button>
+              </div>
+        </form> 
+    </form>
+    </div>
+</div>
 <br>
 <div class="table-responsive">
     <table class="table table-striped table-sm table-bordered" border="1">
