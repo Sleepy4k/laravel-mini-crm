@@ -19,11 +19,15 @@
                         <input type="text" class="form-control" id="namabelakang" name="last_name">
                     </div>
                     <div class="mb-3">
-                        <label for="">ID Perusahaan</label>
-                        <input type="number" class="form-control" id="companies_id" name="companies_id">
+                        <label for="" class="form-label">ID Perusahaan</label>
+                        <select class="form-select" id="companies_id" name="companies_id">
+                            @foreach ($companies as $company)
+                                <option value="{{$company->id}}">{{$company->id}}. {{$company->name}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="mb-3">
-                        <label for="">Email</label>
+                        <label for="" >Email</label>
                         <input type="email" class="form-control" id="email"  name="email">
                     </div>
                     <div class="mb-3">

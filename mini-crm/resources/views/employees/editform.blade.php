@@ -20,7 +20,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="">ID Perusahaan</label>
-                        <input type="number" class="form-control" id="companies_id" name="companies_id" value="{{$data->companies_id}}">
+                        {{-- <input type="number" class="form-control" id="companies_id" name="companies_id" value="{{$data->companies_id}}"> --}}
+                        <select class="form-select" id="companies_id" name="companies_id">
+                            @foreach ($companies as $company)
+                                <option value="{{$company->id}}">{{$company->id}}. {{$company->name}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="">Email</label>

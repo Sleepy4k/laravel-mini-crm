@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employees;
+use App\Models\Companies;
 use Illuminate\Http\Request;
 
 class EmployeesController extends Controller
@@ -13,7 +14,9 @@ class EmployeesController extends Controller
     }
     
     public function add(){
-        return view('employees.add');
+        return view('employees.add', [
+            'companies' => Companies::all()
+        ]);
     }
 
     public function save(Request $request){
@@ -23,7 +26,9 @@ class EmployeesController extends Controller
 
     public function getdata($id){
         $data = Employees::find($id);
-        return view('employees.editform', compact('data'));
+        return view('employees.editform', compact('data'), [
+            'companies' => Companies::all()
+        ]);
         //dd($data);
     }
     public function edit(Request $request, $id){
