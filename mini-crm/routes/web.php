@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LogintestController;
 use App\Http\Controllers\CompaniesController;
 use App\Http\Controllers\EmployeesController;
 use Illuminate\Support\Facades\Route;

@@ -7,8 +7,14 @@ use Illuminate\Http\Request;
 
 class EmployeesController extends Controller
 {
-    public function index(){
-        $class = Employees::paginate(10);
+    public function index(Request $request){
+        if ($request->has('search')){
+        $class = Employees::where('first_name','LIKE', '%' .$request->search. '%')-> paginate(10);
+        }else{
+        $class = Employees::paginate(10);    
+        }
+
+         
         return view('employees/employees', ['employees'=>$class]);
     }
     
