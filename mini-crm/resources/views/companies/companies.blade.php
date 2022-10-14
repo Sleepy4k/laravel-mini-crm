@@ -34,7 +34,7 @@
         <tbody>
             @foreach ($companies as $item)
                 <tr class="align-middle">
-                    <td class="text-center">{{$loop->iteration}}</td>
+                    <td>{{$companies->firstItem() + $loop->index}}</td>
                     <td>{{$item->name}}</td>
                     <td>{{$item->email}}</td>
                     <td><img src="{{ asset('storage/'.$item->logo)}}" height="60"></td>
