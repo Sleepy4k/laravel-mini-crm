@@ -5,7 +5,7 @@
     <h1 class="h2">Daftar Perusahaan</h1>
 </div>
 <br>
-<a class="btn btn-success mb-3" href="{{ url('companies_add')}}">Tambah</a>
+<a class="btn btn-success mb-3" href="{{ route('companies.create')}}">Tambah</a>
 <div class="row">
     <div class="col-md-6">
         <form action="/companies"> 
@@ -40,8 +40,15 @@
                     <td><img src="{{ asset('storage/'.$item->logo)}}" height="60"></td>
                     <td><a href="{{$item->website}}">{{$item->website}}</a></td>
                     <td>
-                        <a href="/getcompanies/{{$item->id}}" class="btn btn-primary">Edit</a>
-                        <a href="/deletecompanies/{{$item->id}}" class="btn btn-danger">Hapus</a>
+                        <a href="/companies/{{$item->id}}/edit" class="btn btn-primary">Edit</a>
+                        <form action="/destroy/{{$item->id}}" class="d-inline"
+                            method="POST">
+                            @method('delete')
+                            @csrf
+                            <button class="btn btn-danger" onclick="return confirm ('Apakah anda yakin ingin menghapus data?')">
+                                Hapus
+                            </button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
