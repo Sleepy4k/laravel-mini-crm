@@ -14,7 +14,11 @@ class EmployeesFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'first_name'=>$this->faker->firstName(),
+            'last_name'=>$this->faker->lastName(),
+            'companies_id'=>mt_rand(1,4),
+            'email'=>$this->faker->freeEmail(),
+            'phone'=>$this->faker->phoneNumber()
         ];
     }
 }
