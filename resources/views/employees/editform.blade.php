@@ -8,7 +8,7 @@
     <div class="col-8">
         <div class="card">
             <div class="card-body">
-                <form action="/updateemployees/{{ $data->id }}" method="POST">
+                <form action="/employees/{{ $data->id }}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="" class="form-label">Nama Depan</label>
