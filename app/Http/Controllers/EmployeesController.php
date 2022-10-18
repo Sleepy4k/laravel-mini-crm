@@ -2,26 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Companies;
+use Illuminate\Http\Request;
+use App\Models\Employees;
+use Illuminate\Support\Facades\Storage;
 
-
-class CompaniesController extends Controller
+class EmployeesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-     
     public function index(Request $request)
     {
         if ($request->has('search')){
-            $class = Companies::where('name','LIKE', '%' .$request->search. '%')-> paginate(10);
+            $class = Employees::where('first_name','LIKE', '%' .$request->search. '%')-> paginate(10);
             }else{
-            $class = Companies::paginate(10);    
+            $class = Employees::paginate(10);    
             }
-            return view('companies.companies', ['companies'=>$class]);
+    
+            return view('employees/employees', ['employees'=>$class]);
     }
 
     /**
@@ -31,8 +32,9 @@ class CompaniesController extends Controller
      */
     public function create()
     {
-
-        return view('companies.add');
+        return view('employees.add', [
+            'companies'=>Companies::all()
+        ]);
     }
 
     /**
@@ -45,18 +47,15 @@ class CompaniesController extends Controller
     {
 
         $validateData = $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'logo' => 'file|mimes:jpeg,png,jpg|max:1024',
-            'website' => 'required'
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'companies_id' => 'nullable',
+            'email' => 'nullable',
+            'phone' => 'nullable'
         ]);
 
-        $validateData['logo'] = $request->file('logo')->store('logo');
-
-        Companies::create($validateData);
-        return redirect('/companies');
-        //
-
+        Employees::create($request->all());
+        return redirect('/employees');
     }
 
     /**
@@ -67,7 +66,7 @@ class CompaniesController extends Controller
      */
     public function show($id)
     {
-        //  
+        //
     }
 
     /**
@@ -76,12 +75,12 @@ class CompaniesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        
-        $data = Companies::find($id);
-        return view('companies.editform', compact('data'));
-
+        $data = Employees::find($id);
+        return view('employees.editform', compact('data'), [
+            'companies' => Companies::all()
+        ]);
     }
 
     /**
@@ -93,22 +92,18 @@ class CompaniesController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $validateData = $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'logo' => 'file|mimes:jpeg,png,jpg|max:1024',
-            'website' => 'required'
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'companies_id' => 'nullable',
+            'email' => 'nullable',
+            'phone' => 'nullable'
         ]);
 
-        if ($request->file('logo')) {
-            if($request->oldImage){
-                Storage::delete($request->oldImage);
-            }
-            $validateData['logo'] = $request->file('logo')->store('logo');
-        }
-        $data = Companies::find($id);
+        $data = Employees::find($id);
         $data->update($validateData);
-        return redirect('/companies')->with('success','Data Berhasil Diupdate');
+        return redirect('/employees')->with('success','Data Berhasil Diupdate');
     }
 
     /**
@@ -119,11 +114,8 @@ class CompaniesController extends Controller
      */
     public function destroy($id)
     {
-        $data = Companies::find($id);
-        if($data->logo){
-            Storage::delete($data->logo);
-        }
+        $data = Employees::find($id);
         $data->delete();
-        return redirect('/companies')->with('success','Data Berhasil Dihapus');
+        return redirect('/employees')->with('success','Data Berhasil Dihapus');
     }
 }

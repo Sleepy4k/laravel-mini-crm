@@ -8,16 +8,30 @@
     <div class="col-8">
         <div class="card">
             <div class="card-body">
-                <form action="/employees_add" method="POST">
+                <form action="/employees" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="" class="form-label">Nama Depan</label>
-                        <input type="text" class="form-control" id="namadepan" name="first_name">
+                        <input type="text" class="form-control @error('first_name') is-invalid @enderror" id="first_name" name="first_name" required
+                        value="{{ old('first_name') }}">
+                        @error('first_name')
+                        <div class="invalid-feedbaack">
+                            {{$message}}
+                        </div>
+                        @enderror
                     </div>
+                    
                     <div class="mb-3">
                         <label for="" class="form-label">Nama Belakang</label>
-                        <input type="text" class="form-control" id="namabelakang" name="last_name">
+                        <input type="text" class="form-control @error('last_name') is-invalid @enderror" id="last_name" name="last_name" required
+                        value="{{ old('last_name') }}">
+                        @error('last_name')
+                    <div class="invalid-feedbaack">
+                        {{$message}}
                     </div>
+                    @enderror
+                    </div>
+
                     <div class="mb-3">
                         <label for="" class="form-label">Nama Perusahaan</label>
                         <select class="form-select" id="companies_id" name="companies_id">
@@ -28,11 +42,13 @@
                     </div>
                     <div class="mb-3">
                         <label for="" >Email</label>
-                        <input type="email" class="form-control" id="email"  name="email">
+                        <input type="email" class="form-control" id="email"  name="email"
+                        value="{{ old('email') }}">
                     </div>
                     <div class="mb-3">
                         <label for="">No Telepon</label>
-                        <input type="tel" class="form-control" id="phone" name="phone">
+                        <input type="tel" class="form-control" id="phone" name="phone"
+                        value="{{ old('phone') }}">
                     </div>
                     <button type="submit" class="btn btn-success mt-2">Simpan</button>
                 </form>
