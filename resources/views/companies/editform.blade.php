@@ -8,7 +8,7 @@
     <div class="col-8">
         <div class="card">
             <div class="card-body">
-                <form action="/updatecompanies/{{ $data->id }}" method="POST" enctype="multipart/form-data">
+                <form action="/update/{{ $data->id }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="" class="form-label">Nama Perusahaan</label>
@@ -57,5 +57,12 @@
         }
     }
 </script>
+
+{{-- <script>
+      public function viewImage(){
+        $imageData= Postimage::all();
+        return view('companies', compact('storage'));
+    }
+</script> --}}
 
 @endsection
