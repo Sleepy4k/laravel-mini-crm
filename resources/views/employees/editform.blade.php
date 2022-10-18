@@ -12,15 +12,24 @@
                     @csrf
                     <div class="mb-3">
                         <label for="" class="form-label">Nama Depan</label>
-                        <input type="text" class="form-control" id="namadepan" name="first_name" value="{{$data->first_name}}">
+                        <input type="text" class="form-control @error('first_name') is-invalid @enderror" id="namadepan" name="first_name" value="{{$data->first_name}}">
+                        @error('first_name')
+                        <div class="invalid-feedbaack">
+                            {{$message}}
+                        </div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Nama Belakang</label>
-                        <input type="text" class="form-control" id="namabelakang" name="last_name" value="{{$data->last_name}}">
+                        <input type="text" class="form-control @error('last_name') is-invalid @enderror" id="namabelakang" name="last_name" value="{{$data->last_name}}">
+                        @error('first_name')
+                        <div class="invalid-feedbaack">
+                            {{$message}}
+                        </div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="">Nama Perusahaan</label>
-                        {{-- <input type="number" class="form-control" id="companies_id" name="companies_id" value="{{$data->companies_id}}"> --}}
                         <select class="form-select" id="companies_id" name="companies_id">
                             @foreach ($companies as $company)
                                 <option value="{{$company->id}}">{{$company->id}}. {{$company->name}}</option>
