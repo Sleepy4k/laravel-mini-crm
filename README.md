@@ -23,3 +23,12 @@ Optional Feature
 - Use Swal JS for confirmation
 - Use Data Table
 - Use Permission to multi user
+
+# How to install ?
+
+
+- Run 'cp .env.example .env' and 'composer install'
+- Configure your '.env' file with your Database
+- Then 'php artisan key:generate' to generate key app
+- 'php artisan migrate:fresh --seed' to migrate database and make dummy data
+- To display logo in Companies table run 'php artisan storage:link' then upload the logo 
