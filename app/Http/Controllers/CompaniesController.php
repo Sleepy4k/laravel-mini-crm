@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Companies;
+use Illuminate\Support\Facades\Storage;
 
 
 class CompaniesController extends Controller
