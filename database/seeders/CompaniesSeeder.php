@@ -76,5 +76,12 @@ class CompaniesSeeder extends Seeder
             'logo'=>'https://www.pertamina.com/landing/images/logo.png',
             'website'=>'http://world.kbs.co.kr/'
         ]);
+
+        Companies::insert([
+            'name'=>'Satria Dewa',
+            'email'=>'jagadsatria@dewa.com ',
+            'logo'=>'https://www.pertamina.com/landing/images/logo.png',
+            'website'=>'http://satriadewa.com/'
+        ]);
     }
 }
