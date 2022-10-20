@@ -19,6 +19,7 @@
     </div>
 </div>
 <br>
+@include('sweetalert::alert')
 <div class="table-responsive">
     <table class="table table-striped table-sm table-bordered" border="1">
         <thead>

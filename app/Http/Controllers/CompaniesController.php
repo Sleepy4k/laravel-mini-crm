@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Companies;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 
 class CompaniesController extends Controller
@@ -57,6 +59,7 @@ class CompaniesController extends Controller
         }
 
         Companies::create($validateData);
+        Alert::success('Data Masuk', 'Data Berhasil Ditambahkan');
         return redirect('/companies');
         return redirect()->route('index');
         //
@@ -85,6 +88,7 @@ class CompaniesController extends Controller
         
         $data = Companies::find($id);
         return view('companies.editform', compact('data'));
+        
 
     }
 
@@ -112,7 +116,10 @@ class CompaniesController extends Controller
         }
         $data = Companies::find($id);
         $data->update($validateData);
+
+        Alert::success('Data Diubah', 'Data Berhasil Diubah');
         return redirect()->back()->with('success','Data Berhasil Diupdate');
+
     }
 
     /**
@@ -128,6 +135,12 @@ class CompaniesController extends Controller
             Storage::delete($data->logo);
         }
         $data->delete();
+
         return redirect()->back()->with('success','Data Berhasil Dihapus');
+        Alert::success('Data Terhapus', 'Data Berhasil Dihapus');
+        
     }
+
+    
 }
+
