@@ -47,15 +47,18 @@ class CompaniesController extends Controller
 
         $validateData = $request->validate([
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'nullable',
             'logo' => 'file|mimes:jpeg,png,jpg|max:1024',
-            'website' => 'required'
+            'website' => 'nullable'
         ]);
 
-        $validateData['logo'] = $request->file('logo')->store('logo');
+        if($request->file('image')){
+            $validateData['logo'] = $request->file('image')->store('logo');
+        }
 
         Companies::create($validateData);
         return redirect('/companies');
+        return redirect()->route('index');
         //
 
     }
@@ -109,7 +112,7 @@ class CompaniesController extends Controller
         }
         $data = Companies::find($id);
         $data->update($validateData);
-        return redirect('/companies')->with('success','Data Berhasil Diupdate');
+        return redirect()->back()->with('success','Data Berhasil Diupdate');
     }
 
     /**
@@ -125,6 +128,6 @@ class CompaniesController extends Controller
             Storage::delete($data->logo);
         }
         $data->delete();
-        return redirect('/companies')->with('success','Data Berhasil Dihapus');
+        return redirect()->back()->with('success','Data Berhasil Dihapus');
     }
 }
