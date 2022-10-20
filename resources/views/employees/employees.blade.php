@@ -7,9 +7,9 @@
 <a class="btn btn-success mb-3" href="{{ url('employees/create')}}">Tambah</a>
 <div class="row">
     <div class="col-md-6">
-        <form action="/employees"> 
+        <form action="{{route('employees.index')}}"> 
             <div class="input-group mb-3">
-                <form action="/employees" method="GET"> 
+                <form action="{{route('employees.index')}}" method="GET"> 
                 <input type="text" class="form-control" placeholder="Search.." name="search">
                 <button class="btn btn-primary" type="submit">Search</button>
               </div>
@@ -37,7 +37,7 @@
                     <td>{{$employees->firstItem() + $loop->index}}</td>
                     <td>{{$item->first_name}}</td>
                     <td>{{$item->last_name}}</td>
-                    <td>{{$item->companies['name']??'-'}}</td>
+                    <td>{{$item->companies['name']??'-- Belum memilih Perusahaan --'}}</td>
                     <td>{{$item->email}}</td>
                     <td>{{$item->phone}}</td>
                     <td>

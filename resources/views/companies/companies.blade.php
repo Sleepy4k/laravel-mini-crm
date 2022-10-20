@@ -8,9 +8,9 @@
 <a class="btn btn-success mb-3" href="{{ route('companies.create')}}">Tambah</a>
 <div class="row">
     <div class="col-md-6">
-        <form action="/companies"> 
+        <form action="{{route('companies.index')}}"> 
             <div class="input-group mb-3">
-                <form action="/companies" method="GET"> 
+                <form action="{{route('companies.index')}}" method="GET"> 
                 <input type="text" class="form-control" placeholder="Search.." name="search">
                 <button class="btn btn-primary" type="submit">Search</button>
               </div>
