@@ -25,9 +25,9 @@ Route::post('/signout', [UserController::class, 'signout'])->name('signout')->mi
 // Companies route
 //Route::resource('companies', CompaniesController::class);
 
-Route::get('companies', [CompaniesController::class, 'index']);
-Route::get('companies/create', [CompaniesController::class, 'create'])->name('companies.create')->middleware('auth');
-Route::post('companies', [CompaniesController::class, 'store'])->name('companies.store')->middleware('auth');
+Route::get('/companies', [CompaniesController::class, 'index'])->name('companies.index')->middleware('auth');
+Route::get('/companies/create', [CompaniesController::class, 'create'])->name('companies.create')->middleware('auth');
+Route::post('/companies', [CompaniesController::class, 'store'])->name('companies.store')->middleware('auth');
 Route::get('/companies/{id}/edit', [CompaniesController::class, 'edit'])->name('companies.edit')->middleware('auth');
 Route::post('/update/{id}', [CompaniesController::class, 'update'])->name('companies.update')->middleware('auth');
 Route::delete('/destroy/{id}', [CompaniesController::class, 'destroy'])->name('destroy')->middleware('auth');

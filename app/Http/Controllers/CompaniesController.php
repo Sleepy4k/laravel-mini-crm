@@ -60,10 +60,8 @@ class CompaniesController extends Controller
 
         Companies::create($validateData);
         Alert::success('Data Masuk', 'Data Berhasil Ditambahkan');
-        return redirect('/companies');
-        return redirect()->route('index');
-        //
-
+        return redirect()->route('companies.index');
+        
     }
 
     /**
@@ -136,11 +134,10 @@ class CompaniesController extends Controller
         }
         $data->delete();
 
-        return redirect()->back()->with('success','Data Berhasil Dihapus');
         Alert::success('Data Terhapus', 'Data Berhasil Dihapus');
+        return redirect()->back()->with('success','Data Berhasil Dihapus');
         
     }
 
-    
 }
 
