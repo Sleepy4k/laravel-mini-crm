@@ -12,7 +12,7 @@
                     @csrf
                     <div class="mb-3">
                         <label for="" class="form-label">Nama Depan</label>
-                        <input type="text" class="form-control @error('first_name') is-invalid @enderror" id="namadepan" name="first_name" value="{{$data->first_name}}">
+                        <input type="text" class="form-control @error('first_name') is-invalid @enderror" id="namadepan" name="first_name" value="{{$data->first_name}}" autofocus>
                         @error('first_name')
                         <div class="invalid-feedbaack">
                             {{$message}}
@@ -31,8 +31,13 @@
                     <div class="mb-3">
                         <label for="">Nama Perusahaan</label>
                         <select class="form-select" id="companies_id" name="companies_id">
+                            <option value="">-- Pilih Perusahaan --</option>
                             @foreach ($companies as $company)
-                                <option value="{{$company->id}}">{{$company->id}}. {{$company->name}}</option>
+                            @if (old('companies_id', $data->companies_id) == $company->id)
+                            <option value="{{$company->id}}" selected>{{$company->id}}. {{$company->name}}</option>
+                            @else
+                            <option value="{{$company->id}}" >{{$company->id}}. {{$company->name}}</option>
+                            @endif
                             @endforeach
                         </select>
                     </div>

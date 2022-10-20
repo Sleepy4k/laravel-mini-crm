@@ -18,25 +18,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [UserController::class, 'login'])->name('login');//->middleware('guest');
+Route::get('/', [UserController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/', [UserController::class, 'authenticate'])->name('authenticate');
-Route::post('/signout', [UserController::class, 'signout'])->name('signout');
+Route::post('/signout', [UserController::class, 'signout'])->name('signout')->middleware('auth');
 
 // Companies route
 //Route::resource('companies', CompaniesController::class);
 
 Route::get('companies', [CompaniesController::class, 'index']);
-Route::get('companies/create', [CompaniesController::class, 'create'])->name('companies.create');
-Route::post('companies', [CompaniesController::class, 'store'])->name('companies.store');
-Route::get('/companies/{id}/edit', [CompaniesController::class, 'edit'])->name('companies.edit');
-Route::post('/update/{id}', [CompaniesController::class, 'update'])->name('companies.update');
-Route::delete('/destroy/{id}', [CompaniesController::class, 'destroy'])->name('destroy');
+Route::get('companies/create', [CompaniesController::class, 'create'])->name('companies.create')->middleware('auth');
+Route::post('companies', [CompaniesController::class, 'store'])->name('companies.store')->middleware('auth');
+Route::get('/companies/{id}/edit', [CompaniesController::class, 'edit'])->name('companies.edit')->middleware('auth');
+Route::post('/update/{id}', [CompaniesController::class, 'update'])->name('companies.update')->middleware('auth');
+Route::delete('/destroy/{id}', [CompaniesController::class, 'destroy'])->name('destroy')->middleware('auth');
 
 // Employees Routes
-Route::get('/employees', [EmployeesController::class, 'index'])->name('employees.index');//->middleware('auth');
-Route::get('/employees/create', [EmployeesController::class, 'create'])->name('employees.create');//->middleware('auth');
-Route::post('/employees', [EmployeesController::class, 'store'])->name('employees.store');//->middleware('auth');
-Route::get('/employees/{id}/edit', [EmployeesController::class, 'edit'])->name('employees.edit');//->middleware('auth');
-Route::post('/employees/{id}', [EmployeesController::class, 'update'])->name('employees.update');//->middleware('auth');
-Route::delete('/employees/{id}', [EmployeesController::class, 'destroy'])->name('employees.destroy');//->middleware('auth');
+Route::get('/employees', [EmployeesController::class, 'index'])->name('employees.index')->middleware('auth');
+Route::get('/employees/create', [EmployeesController::class, 'create'])->name('employees.create')->middleware('auth');
+Route::post('/employees', [EmployeesController::class, 'store'])->name('employees.store')->middleware('auth');
+Route::get('/employees/{id}/edit', [EmployeesController::class, 'edit'])->name('employees.edit')->middleware('auth');
+Route::post('/employees/{id}', [EmployeesController::class, 'update'])->name('employees.update')->middleware('auth');
+Route::delete('/employees/{id}', [EmployeesController::class, 'destroy'])->name('employees.destroy')->middleware('auth');
 

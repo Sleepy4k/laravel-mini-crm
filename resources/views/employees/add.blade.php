@@ -8,7 +8,7 @@
     <div class="col-8">
         <div class="card">
             <div class="card-body">
-                <form action="/employees" method="POST">
+                <form action="{{route('employees.store')}}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="" class="form-label">Nama Depan</label>
@@ -35,6 +35,7 @@
                     <div class="mb-3">
                         <label for="" class="form-label">Nama Perusahaan</label>
                         <select class="form-select" id="companies_id" name="companies_id">
+                            <option value="">-- Pilih Perusahaan --</option>
                             @foreach ($companies as $company)
                                 <option value="{{$company->id}}">{{$company->id}}. {{$company->name}}</option>
                             @endforeach

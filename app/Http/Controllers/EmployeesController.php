@@ -105,9 +105,9 @@ class EmployeesController extends Controller
 
         $data = Employees::find($id);
         $data->update($validateData);
+
+        return redirect()->back()->with('success','Data Berhasil Diupdate');
         Alert::success('Data Masuk', 'Data Berhasil Diubah');
-        return redirect('/employees')->with('success','Data Berhasil Diupdate');
-        
 
     }
 
@@ -121,9 +121,9 @@ class EmployeesController extends Controller
     {
         $data = Employees::find($id);
         $data->delete();
+
+        return redirect()->back()->with('success','Data Berhasil Dihapus');
         Alert::success('Data Masuk', 'Data Berhasil Dihapus');
-        return redirect('/employees')->with('success','Data Berhasil Dihapus');
-        
 
     }
 }
