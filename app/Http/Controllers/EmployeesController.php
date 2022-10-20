@@ -57,6 +57,7 @@ class EmployeesController extends Controller
         ]);
 
         Employees::create($request->all());
+        Alert::success('Data Masuk', 'Data Berhasil Diubah');
         return redirect('/employees');
     }
 
