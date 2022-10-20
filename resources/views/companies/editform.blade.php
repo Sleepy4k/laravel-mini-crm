@@ -27,7 +27,7 @@
                         @else                    
                         <img class="img-preview img-fluid mb-3 col-sm-5">
                         @endif
-                        <input class="form-control" @error('logo') is-invalid @enderror type="file" id="logo" name="logo" onchange="previewImage()">
+                        <input class="form-control @error('logo') is-invalid @enderror" type="file" id="logo" name="logo" onchange="previewImage()">
                         @error('logo')
                         <div class="invalid-feedback">
                             {{ $message }}

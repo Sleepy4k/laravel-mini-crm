@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Companies;
 use Illuminate\Http\Request;
 use App\Models\Employees;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -20,8 +21,10 @@ class EmployeesController extends Controller
     {
         if ($request->has('search')){
             $class = Employees::where('first_name','LIKE', '%' .$request->search. '%')-> paginate(10);
+            Session::put('employees_url', request()->fullUrl());
             }else{
             $class = Employees::paginate(10);    
+            Session::put('employees_url', request()->fullUrl());
             }
     
             return view('employees/employees', ['employees'=>$class]);
@@ -107,9 +110,12 @@ class EmployeesController extends Controller
         $data = Employees::find($id);
         $data->update($validateData);
 
-        return redirect()->back()->with('success','Data Berhasil Diupdate');
-        Alert::success('Data Masuk', 'Data Berhasil Diubah');
+        if(session('employees_url')){
+            return redirect(session('employees_url'));
+        }
 
+        Alert::success('Data Masuk', 'Data Berhasil Diubah');
+        return redirect()->route('employees.index');
     }
 
     /**
@@ -123,8 +129,8 @@ class EmployeesController extends Controller
         $data = Employees::find($id);
         $data->delete();
 
-        return redirect()->back()->with('success','Data Berhasil Dihapus');
         Alert::success('Data Masuk', 'Data Berhasil Dihapus');
+        return redirect()->back();
 
     }
 }

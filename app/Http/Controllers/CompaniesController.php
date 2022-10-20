@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Companies;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -21,10 +22,14 @@ class CompaniesController extends Controller
     {
         if ($request->has('search')){
             $class = Companies::where('name','LIKE', '%' .$request->search. '%')-> paginate(10);
-            }else{
+            Session::put('companies_url', request()->fullUrl());
+        }
+        else{
             $class = Companies::paginate(10);    
-            }
-            return view('companies.companies', ['companies'=>$class]);
+            Session::put('companies_url', request()->fullUrl());
+        }
+
+        return view('companies.companies', ['companies'=>$class]); 
     }
 
     /**
@@ -50,12 +55,12 @@ class CompaniesController extends Controller
         $validateData = $request->validate([
             'name' => 'required',
             'email' => 'nullable',
-            'logo' => 'file|mimes:jpeg,png,jpg|max:1024',
+            'logo' => 'image|mimes:jpeg,png,jpg|max:1024',
             'website' => 'nullable'
         ]);
 
-        if($request->file('image')){
-            $validateData['logo'] = $request->file('image')->store('logo');
+        if($request->file('logo')){
+            $validateData['logo'] = $request->file('logo')->store('logo');
         }
 
         Companies::create($validateData);
@@ -82,12 +87,9 @@ class CompaniesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        
+    {        
         $data = Companies::find($id);
         return view('companies.editform', compact('data'));
-        
-
     }
 
     /**
@@ -101,23 +103,28 @@ class CompaniesController extends Controller
     {
         $validateData = $request->validate([
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'nullable',
             'logo' => 'file|mimes:jpeg,png,jpg|max:1024',
-            'website' => 'required'
+            'website' => 'nullable'
         ]);
 
-        if ($request->file('logo')) {
+        if ($request->file('image')) {
             if($request->oldImage){
                 Storage::delete($request->oldImage);
             }
-            $validateData['logo'] = $request->file('logo')->store('logo');
         }
+        $validateData['logo'] = $request->file('logo')->store('logo');
+        
+        
         $data = Companies::find($id);
         $data->update($validateData);
+        
+        if(session('companies_url')){
+            return redirect(session('companies_url'));
+        }
 
         Alert::success('Data Diubah', 'Data Berhasil Diubah');
-        return redirect()->back()->with('success','Data Berhasil Diupdate');
-
+        return redirect()->route('companies.index');
     }
 
     /**
@@ -135,8 +142,7 @@ class CompaniesController extends Controller
         $data->delete();
 
         Alert::success('Data Terhapus', 'Data Berhasil Dihapus');
-        return redirect()->back()->with('success','Data Berhasil Dihapus');
-        
+        return redirect()->back();
     }
 
 }

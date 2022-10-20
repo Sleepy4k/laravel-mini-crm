@@ -5,7 +5,7 @@
     <h1 class="h2">Daftar Perusahaan</h1>
 </div>
 <br>
-<a class="btn btn-success mb-3" href="{{ route('companies.create')}}">Tambah</a>
+<a class="btn btn-success mb-3" href="{{ route('companies.create')}}">Tambah +</a>
 <div class="row">
     <div class="col-md-6">
         <form action="{{route('companies.index')}}"> 
