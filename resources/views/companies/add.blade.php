@@ -8,11 +8,11 @@
     <div class="col-8">
         <div class="card">
             <div class="card-body">
-                <form action="/companies" method="POST" enctype="multipart/form-data">
+                <form action="{{route('companies.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="" class="form-label">Nama Perusahaan</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" required>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" required autofocus>
                         @error('name')
                         <div class="invalid-feedbaack">
                             Nama Perusahaan wajib diisi
