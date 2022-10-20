@@ -6,6 +6,8 @@ use App\Models\Companies;
 use Illuminate\Http\Request;
 use App\Models\Employees;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class EmployeesController extends Controller
 {
@@ -103,7 +105,10 @@ class EmployeesController extends Controller
 
         $data = Employees::find($id);
         $data->update($validateData);
+        Alert::success('Data Masuk', 'Data Berhasil Diubah');
         return redirect('/employees')->with('success','Data Berhasil Diupdate');
+        
+
     }
 
     /**
@@ -116,6 +121,9 @@ class EmployeesController extends Controller
     {
         $data = Employees::find($id);
         $data->delete();
+        Alert::success('Data Masuk', 'Data Berhasil Dihapus');
         return redirect('/employees')->with('success','Data Berhasil Dihapus');
+        
+
     }
 }
