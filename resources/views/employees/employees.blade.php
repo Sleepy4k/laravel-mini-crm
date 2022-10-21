@@ -41,8 +41,8 @@
                     <td>{{$item->email}}</td>
                     <td>{{$item->phone}}</td>
                     <td>
-                        <a href="/employees/{{$item->id}}/edit" class="btn btn-primary">Edit</a>
-                        <form action="/employees/{{$item->id}}" method="post" class="d-inline">
+                        <a href="{{route('employees.edit', $item->id)}}" class="btn btn-primary">Edit</a>
+                        <form action="{{route('employees.destroy', $item->id)}}" method="post" class="d-inline">
                             @method('delete')
                             @csrf
                             <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus ?')">Hapus</button>

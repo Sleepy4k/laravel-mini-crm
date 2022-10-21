@@ -40,8 +40,8 @@
                     <td><img src="{{ asset('storage/'.$item->logo)}}" height="60"></td>
                     <td><a href="{{$item->website}}">{{$item->website}}</a></td>
                     <td>
-                        <a href="/companies/{{$item->id}}/edit" class="btn btn-primary">Edit</a>
-                        <form action="/destroy/{{$item->id}}" class="d-inline"
+                        <a href="{{route('companies.edit', $item->id)}}" class="btn btn-primary">Edit</a>
+                        <form action="{{route('companies.destroy', $item->id)}}" class="d-inline"
                             method="POST">
                             @method('delete')
                             @csrf
