@@ -30,7 +30,7 @@ Route::get('/companies/create', [CompaniesController::class, 'create'])->name('c
 Route::post('/companies', [CompaniesController::class, 'store'])->name('companies.store')->middleware('auth');
 Route::get('/companies/{id}/edit', [CompaniesController::class, 'edit'])->name('companies.edit')->middleware('auth');
 Route::post('/update/{id}', [CompaniesController::class, 'update'])->name('companies.update')->middleware('auth');
-Route::delete('/destroy/{id}', [CompaniesController::class, 'destroy'])->name('destroy')->middleware('auth');
+Route::delete('/destroy/{id}', [CompaniesController::class, 'destroy'])->name('companies.destroy')->middleware('auth');
 
 // Employees Routes
 Route::get('/employees', [EmployeesController::class, 'index'])->name('employees.index')->middleware('auth');
