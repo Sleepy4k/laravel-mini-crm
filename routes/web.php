@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [UserController::class, 'login'])->name('login')->middleware('guest');
-Route::post('/', [UserController::class, 'authenticate'])->name('authenticate');
+Route::post('/', [UserController::class, 'authenticate'])->name('authenticate')->middleware('guest');
 Route::post('/signout', [UserController::class, 'signout'])->name('signout')->middleware('auth');
 
 // Companies route
