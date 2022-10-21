@@ -112,7 +112,7 @@ class CompaniesController extends Controller
 
         if ($request->file('logo')) {
             if($request->oldLogo){
-                Storage::delete($request->oldImage);
+                Storage::delete($request->oldLogo);
             }
             $validateData['logo'] = $request->file('logo')->store('logo');
         }
