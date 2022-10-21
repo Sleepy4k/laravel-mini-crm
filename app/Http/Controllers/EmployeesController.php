@@ -60,6 +60,7 @@ class EmployeesController extends Controller
         ]);
 
         Employees::create($request->all());
+        Alert::success('Berhasil', 'Data Telah Diinput');
         return redirect('/employees');
     }
 
@@ -109,11 +110,10 @@ class EmployeesController extends Controller
         $data = Employees::find($id);
         $data->update($validateData);
 
+        Alert::success('Data Masuk', 'Data Berhasil Diubah');
         if(session('employees_url')){
             return redirect(session('employees_url'));
         }
-
-        Alert::success('Data Masuk', 'Data Berhasil Diubah');
         return redirect()->route('employees.index');
     }
 
@@ -128,7 +128,7 @@ class EmployeesController extends Controller
         $data = Employees::find($id);
         $data->delete();
 
-        Alert::success('Data Masuk', 'Data Berhasil Dihapus');
+        Alert::success('Success', 'Data Berhasil Dihapus');
         return redirect()->back();
 
     }

@@ -99,31 +99,30 @@ class CompaniesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Companies $companies, $id)
     {
-        $validateData = $request->validate([
+        $rules = [
             'name' => 'required',
             'email' => 'nullable',
             'logo' => 'file|mimes:jpeg,png,jpg|max:1024',
             'website' => 'nullable'
-        ]);
+        ];
 
-        if ($request->file('image')) {
-            if($request->oldImage){
+        $validateData = $request->validate($rules);
+
+        if ($request->file('logo')) {
+            if($request->oldLogo){
                 Storage::delete($request->oldImage);
             }
+            $validateData['logo'] = $request->file('logo')->store('logo');
         }
-        $validateData['logo'] = $request->file('logo')->store('logo');
         
+        $data = Companies::where('id', $id)->update($validateData);
         
-        $data = Companies::find($id);
-        $data->update($validateData);
-        
+        Alert::success('Data Diubah', 'Data Berhasil Diubah');
         if(session('companies_url')){
             return redirect(session('companies_url'));
         }
-
-        Alert::success('Data Diubah', 'Data Berhasil Diubah');
         return redirect()->route('companies.index');
     }
 
