@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('dashboard.layouts.main')
 
 @section('title', 'Edit Companies')
 @section('content')
@@ -22,6 +22,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">Logo Perusahaan</label>
+                        <input type="hidden" name="oldLogo" value="{{$data->logo}}">
                         @if ($data->logo)
                         <img src="{{ asset('storage/'.$data ->logo)}}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
                         @else                    
@@ -57,12 +58,5 @@
         }
     }
 </script>
-
-{{-- <script>
-      public function viewImage(){
-        $imageData= Postimage::all();
-        return view('companies', compact('storage'));
-    }
-</script> --}}
 
 @endsection
