@@ -56,7 +56,7 @@ class CompaniesController extends Controller
         }
 
         Companies::create($validateData);
-        Alert::success('Data Masuk', 'Data Berhasil Ditambahkan');
+        Alert::success('Berhasil', 'Data Telah Ditambahkan');
         return redirect()->route('companies.index');
         
     }
@@ -111,7 +111,7 @@ class CompaniesController extends Controller
         
         $data = Companies::where('id', $id)->update($validateData);
         
-        Alert::success('Data Diubah', 'Data Berhasil Diubah');
+        Alert::success('Berhasil', 'Data Telah Diubah');
         if(session('companies_url')){
             return redirect(session('companies_url'));
         }
@@ -132,7 +132,7 @@ class CompaniesController extends Controller
         }
         $data->delete();
 
-        Alert::success('Data Terhapus', 'Data Berhasil Dihapus');
+        Alert::success('Berhasil', 'Data Telah Dihapus');
         return redirect()->back();
     }
 
