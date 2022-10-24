@@ -8,14 +8,14 @@
 <br>
 <div class="table-responsive">
     <table id="myTable" class="table table-striped table-bordered">
-    <thead>
+        <thead>
             <tr class="table-success">
                 <th class="text-center">No</th>
                 <th>Nama Perusahaan</th>
                 <th>Email</th>
                 <th>Logo Perusahaan</th>
                 <th>Website</th>
-                <th colspan="2">Opsi</th>
+                <th>Opsi</th>
             </tr>
         </thead>
         <tbody>
