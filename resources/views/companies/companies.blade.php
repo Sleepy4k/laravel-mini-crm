@@ -2,26 +2,13 @@
 @section('title', 'Companies')
 @section('content')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Daftar Perusahaan</h1>
+    <h1 class="h2">Howdy, Admin</h1>
 </div>
-<br>
-<a class="btn btn-success mb-3" href="{{ route('companies.create')}}">Tambah +</a>
-<div class="row">
-    <div class="col-md-6">
-        <form action="{{route('companies.index')}}"> 
-            <div class="input-group mb-3">
-                <form action="{{route('companies.index')}}" method="GET"> 
-                <input type="text" class="form-control" placeholder="Search.." name="search">
-                <button class="btn btn-primary" type="submit">Search</button>
-              </div>
-        </form> 
-    </form>
-    </div>
-</div>
+<a class="btn btn-success mb-3" href="{{ route('employees.create')}}">Tambah +</a>
 <br>
 <div class="table-responsive">
-    <table class="table table-striped table-sm table-bordered" border="1">
-        <thead>
+    <table id="myTable" class="table table-striped table-bordered">
+    <thead>
             <tr class="table-success">
                 <th class="text-center">No</th>
                 <th>Nama Perusahaan</th>
@@ -33,8 +20,8 @@
         </thead>
         <tbody>
             @foreach ($companies as $item)
-                <tr class="align-middle">
-                    <td>{{$companies->firstItem() + $loop->index}}</td>
+                <tr>
+                    <td class="text-center">{{$loop->iteration}}</td>
                     <td>{{$item->name}}</td>
                     <td>{{$item->email}}</td>
                     <td><img src="{{ asset('storage/'.$item->logo)}}" height="60"></td>
@@ -54,6 +41,5 @@
             @endforeach
         </tbody>
     </table>
-    {{$companies->links()}}
 </div>
 @endsection

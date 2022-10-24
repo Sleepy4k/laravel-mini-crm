@@ -17,17 +17,11 @@ class EmployeesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if ($request->has('search')){
-            $class = Employees::where('first_name','LIKE', '%' .$request->search. '%')-> paginate(10);
-            Session::put('employees_url', request()->fullUrl());
-            }else{
-            $class = Employees::paginate(10);    
-            Session::put('employees_url', request()->fullUrl());
-            }
+        Session::put('employees_url', request()->fullUrl());
     
-            return view('employees/employees', ['employees'=>$class]);
+        return view('employees.employees', ['employees'=>Employees::all()]);
     }
 
     /**

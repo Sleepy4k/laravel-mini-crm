@@ -19,17 +19,9 @@ class CompaniesController extends Controller
      */
      
     public function index(Request $request)
-    {
-        if ($request->has('search')){
-            $class = Companies::where('name','LIKE', '%' .$request->search. '%')-> paginate(10);
-            Session::put('companies_url', request()->fullUrl());
-        }
-        else{
-            $class = Companies::paginate(10);    
-            Session::put('companies_url', request()->fullUrl());
-        }
-
-        return view('companies.companies', ['companies'=>$class]); 
+    {   
+        Session::put('companies_url', request()->fullUrl());
+        return view('companies.companies', ['companies'=>Companies::all()]); 
     }
 
     /**
