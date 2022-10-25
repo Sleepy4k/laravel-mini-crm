@@ -4,7 +4,7 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Howdy, Admin</h1>
 </div>
-<a class="btn btn-success mb-3" href="{{ route('employees.create')}}">Tambah +</a>
+<a class="btn btn-success mb-3" href="{{ route('companies.create')}}">Tambah +</a>
 <br>
 <div class="table-responsive">
     <table id="myTable" class="table table-striped table-bordered">
