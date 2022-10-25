@@ -7,9 +7,9 @@
 <a class="btn btn-success mb-3" href="{{ route('employees.create')}}">Tambah +</a>
 <br>
 <div class="table-responsive">
-    <table id="myTable" class="table table-striped table-bordered">
+    <table id="myTable" class="table table-striped table-bordered table-sm">
         <thead>
-            <tr class="table-success">
+            <tr class="table-success align-middle">
                 <th>No</th>
                 <th>Nama Depan</th>
                 <th>Nama Belakang</th>
@@ -21,13 +21,13 @@
         </thead>
         <tbody>
             @foreach ($employees as $item)
-                <tr class="align-middle">
-                    <td>{{$loop->iteration}}</td>
-                    <td>{{$item->first_name}}</td>
-                    <td>{{$item->last_name}}</td>
-                    <td>{{$item->companies['name']??'-- Belum memilih Perusahaan --'}}</td>
-                    <td>{{$item->email}}</td>
-                    <td>{{$item->phone}}</td>
+                <tr>
+                    <td class="align-middle">{{$loop->iteration}}</td>
+                    <td class="align-middle">{{$item->first_name}}</td>
+                    <td class="align-middle">{{$item->last_name}}</td>
+                    <td class="align-middle">{{$item->companies['name']??'-- Belum memilih Perusahaan --'}}</td>
+                    <td class="align-middle">{{$item->email}}</td>
+                    <td class="align-middle">{{$item->phone}}</td>
                     <td>
                         <a href="{{route('employees.edit', $item->id)}}" class="btn btn-primary">Edit</a>
                         <form action="{{route('employees.destroy', $item->id)}}" method="post" class="d-inline">
@@ -40,5 +40,6 @@
             @endforeach
         </tbody>
     </table>
+    <br>
 </div>
 @endsection
