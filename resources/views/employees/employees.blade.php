@@ -4,24 +4,12 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Howdy, Admin</h1>
 </div>
-<a class="btn btn-success mb-3" href="{{ url('employees/create')}}">Tambah</a>
-<div class="row">
-    <div class="col-md-6">
-        <form action="{{route('employees.index')}}"> 
-            <div class="input-group mb-3">
-                <form action="{{route('employees.index')}}" method="GET"> 
-                <input type="text" class="form-control" placeholder="Search.." name="search">
-                <button class="btn btn-primary" type="submit">Search</button>
-              </div>
-        </form> 
-    </form>
-    </div>
-</div>
+<a class="btn btn-success mb-3" href="{{ route('employees.create')}}">Tambah +</a>
 <br>
 <div class="table-responsive">
-    <table class="table table-striped table-sm table-bordered" border="1">
+    <table id="myTable" class="table table-striped table-bordered table-sm">
         <thead>
-            <tr class="table-success">
+            <tr class="table-success align-middle">
                 <th>No</th>
                 <th>Nama Depan</th>
                 <th>Nama Belakang</th>
@@ -33,25 +21,25 @@
         </thead>
         <tbody>
             @foreach ($employees as $item)
-                <tr class="align-middle">
-                    <td>{{$employees->firstItem() + $loop->index}}</td>
-                    <td>{{$item->first_name}}</td>
-                    <td>{{$item->last_name}}</td>
-                    <td>{{$item->companies['name']??'-- Belum memilih Perusahaan --'}}</td>
-                    <td>{{$item->email}}</td>
-                    <td>{{$item->phone}}</td>
+                <tr>
+                    <td class="align-middle">{{$loop->iteration}}</td>
+                    <td class="align-middle">{{$item->first_name}}</td>
+                    <td class="align-middle">{{$item->last_name}}</td>
+                    <td class="align-middle">{{$item->companies['name']??'-- Belum memilih Perusahaan --'}}</td>
+                    <td class="align-middle">{{$item->email}}</td>
+                    <td class="align-middle">{{$item->phone}}</td>
                     <td>
-                        <a href="/employees/{{$item->id}}/edit" class="btn btn-primary">Edit</a>
-                        <form action="/employees/{{$item->id}}" method="post" class="d-inline">
+                        <a href="{{route('employees.edit', $item->id)}}" class="btn btn-primary">Edit</a>
+                        <form action="{{route('employees.destroy', $item->id)}}" method="post" class="d-inline">
                             @method('delete')
                             @csrf
-                            <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus ?')">Hapus</button>
+                            <button class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus ?')">Hapus</button>
                         </form>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-    {{$employees->links()}}
+    <br>
 </div>
 @endsection
